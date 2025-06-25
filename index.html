@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your UAE Trading Business Blueprint by Riyad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Background: #FDFBF7, Secondary: #F5F0E8, Text: #5D534A, Accent: #C87E60) -->
+    <!-- Application Structure Plan: A multi-section, dashboard-style SPA to guide the user from opportunity analysis to actionable steps. Structure: 1. UAE Opportunity (Data Dashboard), 2. Sector Exploration (Interactive Tabs), 3. Business Model Comparison (Interactive Calculator), 4. Startup Roadmap (Clickable Process Flow), 5. Future Strategy (Info Cards). This task-oriented flow directly addresses the user's need for a clear, low-risk path to starting a business, making complex information digestible and empowering decision-making. -->
+    <!-- Visualization & Content Choices: UAE Growth: Bar Chart (Chart.js) to compare eras visually. Sectors: Tabs with Donut/Bar charts (Chart.js) to show market share/trade balance, supporting niche identification. Costs: Interactive JS calculator for tangible financial planning. Roadmap: HTML/CSS timeline for clear process visualization. This combination uses interactive elements to simplify complex data (costs, market size) and processes, facilitating understanding and planning. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #5D534A;
+        }
+        .accent-bg { background-color: #C87E60; }
+        .accent-text { color: #C87E60; }
+        .accent-border { border-color: #C87E60; }
+        .secondary-bg { background-color: #F5F0E8; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .number-animate {
+            transition: all 1s ease-out;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            border-bottom: 2px solid #C87E60;
+            color: #C87E60;
+            font-weight: 600;
+        }
+        .roadmap-step {
+            transition: all 0.3s ease;
+        }
+        .roadmap-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold accent-text">Your UAE Trading Blueprint</h1>
+                <p class="text-sm text-gray-500">by Riyad</p>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-base">
+                <a href="#opportunity" class="hover:accent-text transition-colors">The Opportunity</a>
+                <a href="#sectors" class="hover:accent-text transition-colors">Sectors</a>
+                <a href="#models" class="hover:accent-text transition-colors">Models</a>
+                <a href="#roadmap" class="hover:accent-text transition-colors">Roadmap</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="text-center py-16 md:py-24 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Chart Your Course to Generational Success</h2>
+                <p class="text-lg md:text-xl text-gray-600">You've put in the work. Now, let's channel that effort into a tangible, real-world business. This interactive guide translates extensive research into a clear, actionable plan for launching a low-cost, high-value trading company in the thriving UAE market.</p>
+            </div>
+        </section>
+
+        <section id="opportunity" class="py-16 md:py-20 secondary-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">The UAE Advantage: A Hub of Growth</h3>
+                    <p class="text-gray-600">The UAE isn't just a regional player; it's a global economic powerhouse. Understanding its trajectory is the first step. The data reveals a nation rapidly diversifying away from oil, investing in technology, and creating an exceptionally pro-business environment perfect for your new venture.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Population Growth</h4>
+                            <p class="accent-text text-4xl font-bold number-counter" data-target="12.3">0</p>
+                            <p class="text-gray-500">Million people by 2030, fueling consumption.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Non-Oil Economy</h4>
+                            <p class="accent-text text-4xl font-bold"><span class="number-counter" data-target="70">0</span>%+</p>
+                            <p class="text-gray-500">Contribution to GDP, showing strong diversification.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Global Trade Rank</h4>
+                            <p class="accent-text text-4xl font-bold">#<span class="number-counter" data-target="20">0</span></p>
+                            <p class="text-gray-500">Largest exporter in the world (2023).</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
+                        <h4 class="font-bold text-lg text-center mb-4">Economic Acceleration: Real GDP Growth</h4>
+                        <div class="chart-container">
+                            <canvas id="gdpChart"></canvas>
+                        </div>
+                         <p class="text-center text-sm text-gray-500 mt-4">The UAE's economy is projected to grow nearly twice as fast in the coming years, driven by non-oil sectors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sectors" class="py-16 md:py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Choose Your Path: High-Potential Sectors</h3>
+                    <p class="text-gray-600 mb-6">Your interests in travel, transport, tea, and luxury parts are well-aligned with the UAE's growth areas. This section allows you to explore these sectors, understand their potential, and identify niche products that can form the foundation of your business. Interact with the tabs to discover where your passion meets profitability.</p>
+                    <p class="text-gray-600 italic text-sm md:text-base">Historically, the UAE's economic landscape has transformed from a traditional "oil economy" to a dynamic "new economy" built on services, advanced technology, and sustainable practices. For long-term success and value creation, aligning your business with these evolving pillars is crucial. This means incorporating elements of technology, niche specialization, or sustainable practices within your chosen sector will position your venture for greater resilience and growth, reflecting the nation's forward-thinking approach.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-2">
+                    <div class="border-b border-gray-200">
+                        <nav class="flex flex-wrap -mb-px" id="sectorTabs">
+                            <button class="tab-button active text-sm md:text-base py-4 px-6" data-target="travel">✈️ Travel & Transport</button>
+                            <button class="tab-button text-sm md:text-base py-4 px-6" data-target="tea">🍵 Specialty Tea</button>
+                            <button class="tab-button text-sm md:text-base py-4 px-6" data-target="luxury">💎 Luxury Goods</button>
+                            <button class="tab-button text-sm md:text-base py-4 px-6" data-target="general">📦 General Import/Export</button>
+                        </nav>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <div id="travel" class="tab-content">
+                             <div class="grid md:grid-cols-5 gap-8">
+                                <div class="md:col-span-3">
+                                    <h4 class="font-bold text-2xl mb-3">The Travel & Transport Sector</h4>
+                                    <p class="mb-4">Fueled by booming tourism and its status as a logistics hub, this sector offers diverse opportunities. The UAE travel retail market is projected to reach an impressive $9.05 billion by 2032, driven by rising passenger numbers and advanced airport infrastructure. A significant driver is the tax-free shopping environment, attracting demand for luxury items, electronics, and cosmetics.</p>
+                                    <h5 class="font-bold text-xl mt-6 mb-3">Transport Equipment & Spare Parts: Automotive, Luxury, and EV Components</h5>
+                                    <p class="mb-4">The UAE is a crucial re-export hub for automotive parts across the MENA region. There's strong demand for traditional components (exhausts, brakes, tires) and growing interest in EV components due to increasing adoption of electric vehicles. A specialized niche exists for luxury car parts (e.g., Aston Martin, Bentley, Ferrari).</p>
+                                    <h5 class="font-bold text-xl mt-6 mb-3">Niche Travel Accessories: Identifying High-Margin Products</h5>
+                                    <p class="mb-4">The global travel industry boom fuels demand for travel essentials with excellent profit margins (25-40%). Focus on smart travel accessories with tech integrations (USB charging, GPS, anti-theft), premium duffle bags, portable chargers, RFID-blocking wallets, and comfort items like noise-canceling headphones and compression socks.</p>
+                                    <div class="space-y-3 mt-4">
+                                        <p><strong>Specific High-Demand Products:</strong></p>
+                                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                            <li>Smart Travel Accessories (tech-integrated luggage, multi-functional bags)</li>
+                                            <li>Luxury & EV Auto Parts (niche components for high-end cars and growing EV market)</li>
+                                            <li>Comfort & Convenience Items (premium travel pillows, noise-canceling headphones, compression socks)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <h5 class="font-bold text-center mb-2">Travel Retail Market Growth (2025-2032)</h5>
+                                    <div class="chart-container h-64 sm:h-80">
+                                        <canvas id="travelChart"></canvas>
+                                    </div>
+                                    <p class="text-center text-sm text-gray-500 mt-2">The market is projected to reach $9.05 billion, driven by luxury goods and accessories.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tea" class="tab-content hidden">
+                            <div class="grid md:grid-cols-5 gap-8">
+                                <div class="md:col-span-3">
+                                    <h4 class="font-bold text-2xl mb-3">The Specialty & Organic Tea Market</h4>
+                                    <p class="mb-4">The UAE is a major player in the global tea trade, acting as both a massive importer ($239M in 2023) and a key re-exporter ($398M in 2023, 5th largest globally). There is a strong and growing consumer shift towards premium, organic, and ethically sourced teas, creating a perfect opening for a specialized trading business.</p>
+                                    <h5 class="font-bold text-xl mt-6 mb-3">Demand for Premium and Sustainable Tea Products</h5>
+                                    <p class="mb-4">The Middle East is seeing a surge in demand for specialty and organic teas. Consumers are increasingly focused on flavor, overall experience, and sustainability of sourcing and production. Matcha has seen steady growth due to its health benefits. Opportunities exist for sourcing high-quality black, green, and herbal varieties from renowned regions and building a brand around ethical sourcing and unique origins.</p>
+                                    <div class="space-y-3 mt-4">
+                                        <p><strong>Niche Opportunities:</strong></p>
+                                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                            <li>Premium Organic Teas (sourcing high-quality black, green, and herbal varieties)</li>
+                                            <li>Health-focused Blends (Matcha, wellness teas)</li>
+                                            <li>Single-Origin Storytelling (building a brand around unique origin and ethical sourcing)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                     <h5 class="font-bold text-center mb-2">UAE Tea Trade Balance (2023)</h5>
+                                    <div class="chart-container h-64 sm:h-80">
+                                        <canvas id="teaChart"></canvas>
+                                    </div>
+                                    <p class="text-center text-sm text-gray-500 mt-2">The UAE's significant role as both a top importer and exporter highlights its status as a central tea trading hub.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="luxury" class="tab-content hidden">
+                            <div class="grid md:grid-cols-5 gap-8">
+                                <div class="md:col-span-3">
+                                    <h4 class="font-bold text-2xl mb-3">The Luxury Goods & Parts Market</h4>
+                                    <p class="mb-4">The GCC luxury market is set to double to $35 billion by 2030, driven by high-net-worth individuals (HNWIs), booming tourism, and a thriving e-commerce scene. Consumers here seek exclusivity, cutting-edge design, and unique brand experiences. Dubai alone saw $30.4 billion in tourist spending on luxury goods in 2022.</p>
+                                    <h5 class="font-bold text-xl mt-6 mb-3">High-Value Niche Products and Brand Focus</h5>
+                                    <p class="mb-4">GCC luxury shoppers prioritize unique brand interactions and bespoke experiences. This creates opportunities to offer elite, cutting-edge products and services. Niches include exclusive fashion & accessories, bespoke jewelry & watches, and personalized luxury goods (e.g., premium duffle bags). The focus should be on curating high-quality products that emphasize brand heritage, innovation, and emotional appeal.</p>
+                                    <div class="space-y-3 mt-4">
+                                        <p><strong>High-Value Niches:</strong></p>
+                                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                            <li>Exclusive Fashion & Accessories (curating unique, hard-to-find international pieces)</li>
+                                            <li>Bespoke Jewelry & Watches (focusing on craftsmanship and unique designs)</li>
+                                            <li>Personalized Luxury (customizable high-end travel kits, monogrammed accessories)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <h5 class="font-bold text-center mb-2">Tourist Luxury Spending (Dubai, 2022)</h5>
+                                    <div class="chart-container h-64 sm:h-80">
+                                        <canvas id="luxuryChart"></canvas>
+                                    </div>
+                                    <p class="text-center text-sm text-gray-500 mt-2">A significant portion of tourist spending is on personal luxury goods, driving massive demand.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="general" class="tab-content hidden">
+                             <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-2xl mb-3">General Import/Export: Leveraging a General Trading License</h4>
+                                    <p class="mb-4">A General Trading LLC in the UAE is highly versatile, allowing import, export, and sale of a wide array of products through both physical and online channels. This offers significant scope for diversification and expansion across consumer goods, electronics, fashion, health products, food items, and even building materials.</p>
+                                    <h5 class="font-bold text-xl mt-6 mb-3">Identifying High-Demand Consumer and Digital Products</h5>
+                                    <p class="mb-4">The UAE's e-commerce market is projected to reach $10 billion by 2026, fueled by high smartphone penetration (98%) and demand for niche products. High-demand areas include pharmaceuticals, technology & AI solutions (software, robotics), and sustainable products (eco-friendly goods, biodegradable packaging). A "digital-first" strategy is crucial, integrating e-commerce platforms, digital marketing, and potentially AI/data analytics from the outset.</p>
+                                    <div class="space-y-3 mt-4">
+                                        <p><strong>High-Demand Categories:</strong></p>
+                                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                            <li>Eco-Friendly Products (sustainable fashion, reusable goods, biodegradable packaging)</li>
+                                            <li>Technology & AI Solutions (software, gadgets, smart home devices)</li>
+                                            <li>Niche Consumer Goods (health products, specialty foods, unique home decor)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-center mb-2">Key to Success</h5>
+                                    <div class="secondary-bg p-6 rounded-lg">
+                                        <p class="text-5xl text-center mb-4">📲</p>
+                                        <h6 class="font-bold text-lg text-center">Embrace a Digital-First Strategy</h6>
+                                        <p class="text-center text-sm text-gray-600 mt-2">With 98% smartphone penetration, your success in general trading hinges on a powerful e-commerce presence and savvy digital marketing from day one.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="models" class="py-16 md:py-20 secondary-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Your Business Model: How to Start Lean</h3>
+                    <p class="text-gray-600">Starting a "real world" business doesn't have to mean massive upfront costs. To address your past frustrations and build momentum, it's wise to start lean. The Dropshipping model offers a low-risk way to test the market, while a Niche Distribution model provides more control as you grow. Use the calculator below to estimate your initial investment.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h4 class="font-bold text-2xl mb-4">Dropshipping: The Lean Inventory Approach</h4>
+                        <p class="mb-4 text-gray-600">The perfect market validation tool. You sell products online without holding any inventory; a third-party supplier ships directly to your customer. This model is fully legal in the UAE with the right license and VAT registration.</p>
+                        <p class="mb-4 text-gray-600">It's low-risk, as it significantly reduces upfront capital and inventory management overheads. Dubai's advanced logistics network makes it ideal for efficient product movement. This model allows you to offer a diverse range of products by partnering with multiple suppliers. Setup procedures are simplified, especially in free zones.</p>
+                        <p class="mb-4 text-gray-600">For entrepreneurs, dropshipping serves as a strategic market validation tool. Its minimal investment allows systematic testing of product niches and gauging market demand with low financial exposure. Once profitability is proven, you can scale or transition to a hybrid or traditional import/export model, building your business on empirically validated demand.</p>
+                        <ul class="space-y-3 mt-4">
+                            <li class="flex items-start"><span class="accent-text font-bold text-xl mr-3">✓</span> <div><strong>Low Cost & Risk:</strong> Minimal initial investment, no upfront stock purchase.</div></li>
+                            <li class="flex items-start"><span class="accent-text font-bold text-xl mr-3">✓</span> <div><strong>Flexibility:</strong> Test various products and niches easily to find what sells.</div></li>
+                            <li class="flex items-start"><span class="accent-text font-bold text-xl mr-3">✓</span> <div><strong>Brand Focus:</strong> Emphasizes building value through customer service and marketing.</div></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                         <h4 class="font-bold text-2xl mb-4">Niche Distribution / Agency Models: Facilitating Specialized Trade</h4>
+                         <p class="mb-4 text-gray-600">This model involves facilitating specialized trade by acting as an agent for brands entering the UAE or importing and holding specialized products. An agent acts on behalf of clients, matching orders and providing access to liquidity, earning commissions or fees. While agents may pay upfront, high commission rates (up to 5%) and additional costs (customs, labor) are common, necessitating careful negotiation and ideally direct customer relationships.</p>
+                         <p class="mb-4 text-gray-600">Niche distribution involves a company importing, storing, selling, and shipping products to customers, often with marketing support. This hands-on approach allows for more control over inventory and customer relationships. The UAE offers opportunities in specialized categories like FMCG, pulses, grains, or organic products. Focusing on specific categories allows for expertise building, supply chain optimization, and strong relationships with suppliers and a targeted customer base, fostering a more robust and sustainable business.</p>
+                         <ul class="space-y-3 mt-4">
+                            <li class="flex items-start"><span class="accent-text font-bold text-xl mr-3">✓</span> <div><strong>Higher Control:</strong> Manage inventory, branding, and customer experience directly.</div></li>
+                            <li class="flex items-start"><span class="accent-text font-bold text-xl mr-3">✓</span> <div><strong>Better Margins:</strong> Buying in bulk often leads to higher profit margins.</div></li>
+                            <li class="flex items-start"><span class="accent-text font-bold text-xl mr-3">✓</span> <div><strong>Deeper Relationships:</strong> Build strong connections with both suppliers and customers.</div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-12 bg-white p-8 rounded-xl shadow-md max-w-4xl mx-auto">
+                    <h4 class="font-bold text-2xl mb-2 text-center">Interactive Startup Cost Estimator</h4>
+                    <p class="text-center text-gray-600 mb-6">Select a model and adjust the sliders to see a realistic estimate for your initial setup in a UAE Free Zone.</p>
+                    <div class="grid md:grid-cols-2 gap-6 items-center">
+                        <div>
+                            <div class="mb-4">
+                                <label for="modelType" class="block font-medium mb-1">Business Model</label>
+                                <select id="modelType" class="w-full p-2 border rounded-md">
+                                    <option value="dropshipping">Dropshipping</option>
+                                    <option value="distribution">Niche Distribution (Full Trading)</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="licenseCost" class="block font-medium mb-1">License Tier (AED <span id="licenseValue">9500</span>)</label>
+                                <input type="range" id="licenseCost" min="4000" max="15000" value="9500" step="500" class="w-full">
+                            </div>
+                            <div class="mb-4">
+                                <label for="marketingBudget" class="block font-medium mb-1">Monthly Marketing (AED <span id="marketingValue">1250</span>)</label>
+                                <input type="range" id="marketingBudget" min="500" max="2000" value="1250" step="50" class="w-full">
+                            </div>
+                        </div>
+                        <div class="text-center secondary-bg p-8 rounded-lg">
+                             <p class="text-gray-600 text-lg">Estimated Initial Investment</p>
+                             <p class="accent-text font-bold text-4xl md:text-5xl my-2">AED <span id="totalCost">15,710</span></p>
+                             <p class="text-sm text-gray-500">This covers license, virtual office, visa, fees & contingency. Excludes cost of goods for distribution.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="py-16 md:py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Your Startup Roadmap: From Idea to Operation</h3>
+                     <p class="text-gray-600">Navigating the setup process can seem daunting, but it's a series of clear, manageable steps. This roadmap breaks down the journey. Click on each step to reveal essential details and pro-tips for a smooth launch.</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <div class="space-y-4">
+                        <div class="roadmap-step bg-white rounded-lg shadow-md">
+                            <button class="w-full flex justify-between items-center text-left p-5 font-semibold text-lg" data-step="1">
+                                <span>1. Choose Jurisdiction: Free Zone First</span>
+                                <span class="text-2xl transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="roadmap-content px-5 pb-5">
+                                <p class="text-gray-600">For a low-cost start, a Free Zone is your best bet. It offers 100% foreign ownership and tax exemptions. <br><strong>Pro-Tip:</strong> Look into affordable zones like SHAMS, RAKEZ, or IFZA. Use a virtual office/flexi-desk solution instead of a physical office to save thousands annually.</p>
+                            </div>
+                        </div>
+                         <div class="roadmap-step bg-white rounded-lg shadow-md">
+                            <button class="w-full flex justify-between items-center text-left p-5 font-semibold text-lg" data-step="2">
+                                <span>2. Licensing & Registration</span>
+                                <span class="text-2xl transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="roadmap-content px-5 pb-5">
+                                <p class="text-gray-600">The core legal requirement. You'll need to register a trade name, get initial approval, and then obtain your license.<br><strong>Pro-Tip:</strong> An E-commerce license is perfect and cost-effective for dropshipping (starting from ~AED 1,070). A General Trading license offers more flexibility for distribution but costs more.</p>
+                            </div>
+                        </div>
+                         <div class="roadmap-step bg-white rounded-lg shadow-md">
+                            <button class="w-full flex justify-between items-center text-left p-5 font-semibold text-lg" data-step="3">
+                                <span>3. Customs & Import Code</span>
+                                 <span class="text-2xl transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="roadmap-content px-5 pb-5">
+                                <p class="text-gray-600">Mandatory for any import/export activity. You must register with Dubai Customs to get a unique company code. <br><strong>Pro-Tip:</strong> The process is done online via the Dubai Trade portal and is straightforward. Partnering with a freight forwarder can simplify this entire process significantly.</p>
+                            </div>
+                        </div>
+                        <div class="roadmap-step bg-white rounded-lg shadow-md">
+                            <button class="w-full flex justify-between items-center text-left p-5 font-semibold text-lg" data-step="4">
+                                <span>4. Build Your Digital Storefront</span>
+                                 <span class="text-2xl transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="roadmap-content px-5 pb-5">
+                                <p class="text-gray-600">Your online presence is your business. Set up a professional e-commerce store on a platform like Shopify.<br><strong>Pro-Tip:</strong> Ensure your store supports AED currency and offers Arabic language options. Integrate local payment gateways like Telr or PayTabs to build trust and increase sales.</p>
+                            </div>
+                        </div>
+                         <div class="roadmap-step bg-white rounded-lg shadow-md">
+                            <button class="w-full flex justify-between items-center text-left p-5 font-semibold text-lg" data-step="5">
+                                <span>5. Source Suppliers & Launch</span>
+                                <span class="text-2xl transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="roadmap-content px-5 pb-5">
+                                <p class="text-gray-600">Find reliable suppliers through directories, trade shows, or industry forums. Once you have products and a store, it's time to launch your marketing campaigns.<br><strong>Pro-Tip:</strong> For dropshipping, always order samples to test product quality before you start selling. For distribution, start with a small order to validate demand.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="future" class="py-16 md:py-20 secondary-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Building for Generations: Your Long-Term Strategy</h3>
+                     <p class="text-gray-600">Profitability today is important, but creating a business with lasting value requires a forward-thinking strategy. Focus on these three pillars to build not just a company, but a legacy.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <p class="text-5xl mb-4">💡</p>
+                        <h4 class="font-bold text-xl mb-2">Create a Brand, Not a Commodity</h4>
+                        <p class="text-gray-600">Compete on reputation and value, not just price. Focus on a specific niche, deliver exceptional customer service, and build a brand that people trust and remember. Even with dropshipping, prioritize a "brand-first" mindset by specializing and ensuring consistent quality.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                         <p class="text-5xl mb-4">🚀</p>
+                        <h4 class="font-bold text-xl mb-2">Embrace "Smart Trading"</h4>
+                        <p class="text-gray-600">Leverage technology beyond just a website. Use data analytics for market research, AI for forecasting demand, and digital tools to optimize your logistics and supply chain. Proactively adopting technology ensures agility and competitiveness in dynamic global trade.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <p class="text-5xl mb-4">🌿</p>
+                        <h4 class="font-bold text-xl mb-2">Integrate Sustainable Practices</h4>
+                        <p class="text-gray-600">Align with the future by sourcing eco-friendly products and using green logistics. This appeals to modern consumers, enhances your brand, and builds a responsible, lasting business, creating a "values-driven" competitive advantage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Your UAE Trading Business Blueprint. Your journey to a successful trading business starts now.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        bodyFont: {
+                            family: "'Inter', sans-serif"
+                        },
+                        titleFont: {
+                           family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                           font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        },
+                         beginAtZero: true
+                    }
+                }
+            };
+            
+            const gdpData = {
+                labels: ['2019-2024 (Avg)', '2025-2030 (Proj)'],
+                datasets: [{
+                    label: 'Real GDP Growth (%)',
+                    data: [2.6, 4.7],
+                    backgroundColor: ['#F5F0E8', '#C87E60'],
+                    borderColor: ['#e0d9ce', '#b36a4b'],
+                    borderWidth: 1
+                }]
+            };
+            new Chart(document.getElementById('gdpChart'), { type: 'bar', data: gdpData, options: chartOptions });
+
+            const travelData = {
+                labels: ['Fashion & Accessories', 'Jewelry & Watches', 'Fragrances & Cosmetics', 'Electronics & Gifts', 'Other'],
+                datasets: [{
+                    label: 'Travel Retail Market Share',
+                    data: [35, 20, 18, 15, 12],
+                    backgroundColor: ['#C87E60', '#D39C85', '#DEC0B1', '#E8D4C8', '#F5F0E8'],
+                    hoverOffset: 4
+                }]
+            };
+            new Chart(document.getElementById('travelChart'), { type: 'doughnut', data: travelData, options: { ...chartOptions, plugins: { ...chartOptions.plugins, legend: { display: false } } } });
+
+            const teaData = {
+                labels: ['Tea Trade'],
+                datasets: [
+                    {
+                        label: 'Imports ($M)',
+                        data: [239],
+                        backgroundColor: '#E8D4C8',
+                    },
+                    {
+                        label: 'Exports ($M)',
+                        data: [398],
+                        backgroundColor: '#C87E60',
+                    }
+                ]
+            };
+            new Chart(document.getElementById('teaChart'), { type: 'bar', data: teaData, options: chartOptions });
+
+            const luxuryData = {
+                labels: ['Fashion, Jewelry, Watches', 'Other Goods'],
+                datasets: [{
+                    label: 'Tourist Spending',
+                    data: [35, 65],
+                    backgroundColor: ['#C87E60', '#F5F0E8'],
+                    hoverOffset: 4
+                }]
+            };
+            new Chart(document.getElementById('luxuryChart'), { type: 'pie', data: luxuryData, options: { ...chartOptions, plugins: { ...chartOptions.plugins, legend: { display: true } } } });
+
+            const numberCounters = document.querySelectorAll('.number-counter');
+            const animateCounter = (el) => {
+                const target = +el.getAttribute('data-target');
+                const duration = 1500;
+                const stepTime = 20;
+                const steps = duration / stepTime;
+                const increment = target / steps;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        el.innerText = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        el.innerText = Math.ceil(current).toLocaleString();
+                    }
+                }, stepTime);
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            numberCounters.forEach(counter => observer.observe(counter));
+
+            const sectorTabs = document.getElementById('sectorTabs');
+            const tabContents = document.querySelectorAll('.tab-content');
+            sectorTabs.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    const target = e.target.getAttribute('data-target');
+                    sectorTabs.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    tabContents.forEach(content => {
+                        if (content.id === target) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+
+            const roadmapSteps = document.querySelectorAll('.roadmap-step button');
+            roadmapSteps.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('span:last-child');
+                    const isOpen = content.style.maxHeight;
+
+                    document.querySelectorAll('.roadmap-content').forEach(c => c.style.maxHeight = null);
+                    document.querySelectorAll('.roadmap-step button span:last-child').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                    if (!isOpen) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            });
+            
+            const modelType = document.getElementById('modelType');
+            const licenseCost = document.getElementById('licenseCost');
+            const marketingBudget = document.getElementById('marketingBudget');
+            const licenseValue = document.getElementById('licenseValue');
+            const marketingValue = document.getElementById('marketingValue');
+            const totalCost = document.getElementById('totalCost');
+
+            function calculateCost() {
+                const model = modelType.value;
+                const license = parseInt(licenseCost.value);
+                const marketing = parseInt(marketingBudget.value);
+                
+                licenseValue.textContent = license.toLocaleString();
+                marketingValue.textContent = marketing.toLocaleString();
+
+                const baseCosts = {
+                    dropshipping: {
+                        virtualOffice: 5000, 
+                        visa: 3500,
+                        fees: 2000, 
+                        contingency: 1500,
+                        ecommercePlatform: 300,
+                    },
+                    distribution: {
+                        virtualOffice: 6500,
+                        visa: 4000,
+                        fees: 3000, 
+                        contingency: 4000,
+                        ecommercePlatform: 300,
+                    }
+                };
+
+                const currentBase = baseCosts[model];
+                const total = license + marketing + currentBase.virtualOffice + currentBase.visa + currentBase.fees + currentBase.contingency + currentBase.ecommercePlatform;
+                totalCost.textContent = total.toLocaleString();
+            }
+
+            modelType.addEventListener('input', calculateCost);
+            licenseCost.addEventListener('input', calculateCost);
+            marketingBudget.addEventListener('input', calculateCost);
+            calculateCost();
+        });
+    </script>
+</body>
+</html>
